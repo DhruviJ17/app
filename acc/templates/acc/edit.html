@@ -1,0 +1,9 @@
+{% extends 'acc/main.html' %}
+{% block content %}
+<form method="POST" action="">
+	{% csrf_token %}
+	{{ formset.management_form }}
+	{{form1}}
+	<input type="submit" name="Submit">
+</form>
+{% endblock %}

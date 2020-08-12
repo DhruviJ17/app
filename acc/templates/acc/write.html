@@ -1,0 +1,29 @@
+{% extends 'acc/main.html' %}
+{% block content %}
+<style>
+div{
+  color: pink;
+  font-size: 150%;
+}
+button{
+  color: green;
+}
+</style>
+
+<body bgcolor="yellow">
+   <section class="section">
+        <div class="container">
+            <form method="POST" action="{% url 'add' %}">
+                {% csrf_token %}
+                <div class="field">
+                    <div class="control">
+                        {{ form.text }}
+                    </div>
+                    <button>Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+
+{% endblock %}

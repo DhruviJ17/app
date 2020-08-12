@@ -1,0 +1,25 @@
+{% extends 'acc/base.html' %}
+{% block content %}
+
+{% if tasks %}
+    {% for task in tasks %}
+        <table class="table table-bordered">
+            {% if task.completed %}
+                <tr class="table-secondary">
+                    <td class="striker">{{task.title}}</td>
+                    <td><center><a href="{% url 'uncross' task.id %}">UNCROSS</a></center></td>
+                    <td><center><a href="{% url 'delete_task' task.id %}">DELETE</a></center></td>
+                    <td><center><a href="{% url 'edit' task.id %}">EDIT</a></center></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>{{task.title}}</td>
+                    <td><center><a href="{% url 'cross' task.id %}">CROSS</a></center></td>
+                    <td><center><a href="{% url 'delete_task' task.id %}">DELETE</a></center></td>
+                    <td><center><a href="{% url 'edit' task.id %}">EDIT</a></center></td>
+                </tr>
+            {% endif %}
+        </table>
+    {% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+a{
+  color: red;
+  font-size: 150%;
+
+}
+div{
+  color: black;
+}
+h3{
+  color: blue
+}
+button{
+  color: red;
+}
+</style>
+{% block content %}
+<body bgcolor="yellow">
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <a href="{% url 'Tasks' %}">CREATE YOUR WISHLIST</a><br>
+                <a href="{% url 'add' %}">WRITE YOUR HEARTS OUT HERE</a><br>
+            </div>
+            <h3>ENTRIES:</h3><br>
+            {% csrf_token %}
+            {% for entry in entries %}
+            <div class="content">
+                <p>
+                <span>{{ entry.date_posted }}</span>
+                <br> {{ entry.text }}<br>
+                </p>
+            </div>
+            <div class="media-left">
+                <a href="{% url 'delete_entry' entry.text %}">
+                    <button>DELETE</button>
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'edit_entry' entry.id %}">
+                    <button>EDIT</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+{% endblock %}
+</html>
